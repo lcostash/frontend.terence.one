@@ -6,7 +6,7 @@ export const environment = {
   production: false,
   app: {
     ajax: {
-      url: 'http://localhost',
+      url: 'http://localhost:3000',
       cache: true
     },
     format: {
