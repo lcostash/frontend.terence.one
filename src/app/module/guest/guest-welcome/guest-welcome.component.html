@@ -1,8 +1,11 @@
-<div class="container">
+<div class="container bg-guest-area">
   <div class="row">
-    <div class="col">
+    <div class="bg-guest-area col d-flex justify-content-center align-items-center">
 
-      guest welcome
+      <button type="button" class="btn btn-group-lg btn-primary"
+              (click)="addMessage()" [ngClass]="{'disabled':action.isBusy}">
+        Send Feedback
+      </button>
 
     </div>
   </div>

@@ -1,5 +1,5 @@
 export declare interface MessageInterface {
-  id: string;
+  id: number;
   name: string;
   email: string;
   message: string;

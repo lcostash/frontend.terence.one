@@ -11,7 +11,7 @@ export class CheckService {
    * @return object|null
    */
   public static emailValidator(control: AbstractControl): { badEmail: boolean } {
-    const pattern = /^[a-zA-Z0-9_]+[a-zA-Z0-9\-]+@[a-zA-Z0-9\-]+\.[a-zA-Z0-9\-]+$/;
+    const pattern = /^[a-zA-Z0-9_]+[a-zA-Z0-9\.\-]+@[a-zA-Z0-9\-]+\.[a-zA-Z0-9\-]+$/;
     return control.value ? (control.value.match(pattern) ? null : {badEmail: true}) : null;
   }
 

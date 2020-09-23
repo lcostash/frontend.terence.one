@@ -7,6 +7,7 @@ import {ModalModule, BsModalService} from 'ngx-bootstrap/modal';
 
 import {ShareModule} from './share.module';
 import {GuestAuthComponent} from './guest/guest-auth';
+import {GuestMessageComponent} from './guest/guest-message';
 import {GuestWelcomeComponent} from './guest/guest-welcome';
 
 @NgModule({
@@ -20,6 +21,7 @@ import {GuestWelcomeComponent} from './guest/guest-welcome';
   ],
   declarations: [
     GuestAuthComponent,
+    GuestMessageComponent,
     GuestWelcomeComponent
   ],
   entryComponents: [],

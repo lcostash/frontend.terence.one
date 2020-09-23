@@ -13,7 +13,7 @@
       <img src="../../../../assets/logo-color.svg" alt="" height="94" width="74"/>
     </div>
     <div class="col-8 d-flex justify-content-center flex-column text-center">
-      <h4>Sign In</h4>
+      <h4>Sign in</h4>
       <p class="text-muted">
         <small>to our web site.</small>
       </p>
@@ -26,14 +26,14 @@
 
     <fieldset [disabled]="action.isBusy">
       <div class="form-group">
-        <label for="username" class="py-0 px-1 my-0">Username</label>
+        <label for="username" class="py-0 px-1 my-0">Username&nbsp;<span class="text-danger">*</span></label>
         <input type="text" class="form-control" autocomplete="off" formControlName="username" id="username"
                [ngClass]="{'ng-invalid':signInForm.controls['username'].errors?.beError}" placeholder="">
         <app-check [control]="signInForm.controls['username']"></app-check>
       </div>
 
       <div class="form-group">
-        <label for="password" class="py-0 px-1 my-0">Password</label>
+        <label for="password" class="py-0 px-1 my-0">Password&nbsp;<span class="text-danger">*</span></label>
         <input type="password" class="form-control" autocomplete="off" formControlName="password" id="password"
                [ngClass]="{'ng-invalid':signInForm.controls['password'].errors?.beError}" placeholder="">
         <app-check [control]="signInForm.controls['password']"></app-check>
@@ -45,6 +45,14 @@
             <i class="fa fa-spinner fa-pulse fa-fw" [hidden]="!action.isBusy"></i>
             <span>Sign in</span>
           </button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12 text-center">
+          <small>
+            <span class="text-danger">*</span>
+            &nbsp;<span class="text-muted">Are mandatory fields</span>
+          </small>
         </div>
       </div>
 
