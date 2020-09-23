@@ -1,0 +1,71 @@
+@import "src/scss/variables";
+
+$z-index: 1000;
+
+.loading {
+  display: none;
+  cursor: none;
+  pointer-events: none;
+  align-items: center;
+  justify-content: center;
+  left: 0;
+  top: 0;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  z-index: $z-index + 1;
+
+  &.show {
+    display: flex;
+  }
+
+  &.background {
+    background-color: rgba($black, 0.3);
+  }
+
+  .container {
+    position: absolute;
+    width: 46px;
+    height: 46px;
+    left: calc(50% - 23px);
+    top: calc(50% - 30px);
+    background: transparent url('#{$assets}/logo-white.svg') center center no-repeat;
+    background-size: 34px 43px;
+    z-index: $z-index + 2;
+
+    .progress {
+      z-index: $z-index + 3;
+      background-color: $secondary;
+      left: 0;
+      position: absolute;
+      bottom: -10px;
+      width: 46px;
+      height: 2px;
+      display: inline-block;
+      overflow: hidden;
+
+      &::after {
+        content: "";
+        position: relative;
+        background-color: $primary;
+        transition: .3s all linear;
+        animation: live 2s infinite linear;
+        height: 100%;
+        width: 50%;
+        display: block;
+      }
+    }
+  }
+}
+
+@keyframes live {
+  0% {
+    left: -40%;
+  }
+  50% {
+    left: 90%;
+  }
+  100% {
+    left: -40%;
+  }
+}

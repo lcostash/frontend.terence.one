@@ -1,0 +1,194 @@
+@charset "UTF-8";
+@import "variables";
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~font-awesome/scss/variables";
+
+
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code,
+form, fieldset, legend, p, blockquote, th, td, a, span, dd, dt, dl {
+  user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+}
+
+body, html {
+  height: 100vh;
+}
+
+body {
+  min-width: 320px;
+  background-color: $black;
+  color: $white;
+  font-size: $font-size-base;
+  position: relative;
+
+  &.modal-open {
+    overflow: hidden;
+  }
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+
+  &.disabled, &:disabled {
+    pointer-events: none;
+    cursor: default;
+    opacity: .8;
+    -moz-opacity: 80%;
+  }
+}
+
+.toast-container {
+  .toast-message {
+    font-size: $font-size-smaller;
+  }
+}
+
+.bg-cover {
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  background-image: linear-gradient(rgba($black, .3), rgba($black, .5)), url("#{$assets}/cover.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  z-index: -1;
+}
+
+a {
+  color: $white;
+  @include transition(color 300ms ease);
+
+  &:hover, &:focus, &:active {
+    color: $primary;
+    text-decoration: none;
+  }
+
+  &.active {
+    pointer-events: none;
+    color: $primary;
+
+    &:hover, &:focus, &:active {
+      color: $primary;
+      text-decoration: none;
+    }
+  }
+}
+
+header {
+  .first-menu {
+    font-size: $font-size-bigger;
+  }
+
+  .first-menu + .first-menu {
+    &:before {
+      content: "\2022";
+      color: $primary;
+      margin-right: 5px;
+      font-size: $font-size-bigger;
+    }
+  }
+}
+
+footer {
+  font-size: $font-size-smaller;
+}
+
+.text-small {
+  font-size: $font-size-smaller;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.modal-header {
+  padding: .5rem 1rem;
+
+  .modal-title {
+    color: $black;
+    line-height: 1;
+  }
+}
+
+.modal-body {
+  color: $black;
+  line-height: 1;
+
+  label {
+    font-size: $font-size-smaller;
+    font-weight: bold;
+  }
+
+  a {
+    color: $blue;
+
+    &:hover, &:focus, &:active {
+      color: lighten($blue, 15%);
+    }
+  }
+
+  .btn-full-width {
+    width: 100%;
+  }
+
+  .brand-form {
+    .form-group {
+      position: relative;
+
+      .form-control {
+        &.ng-invalid:not(.ng-untouched) {
+          border-color: $danger !important;
+        }
+      }
+
+      label {
+        position: absolute;
+        top: -8px;
+        left: 4px;
+        background-color: $white;
+        z-index: 1;
+      }
+    }
+  }
+
+  .btn-group {
+    button {
+      min-width: 80px;
+    }
+  }
+}
+
+.bg-admin-area {
+  background-image: linear-gradient(rgba($black, .3), rgba($black, .5));
+
+  .nav-link {
+    padding: 0.3rem .6rem;
+    background-color: rgba($black, .3);
+    border: none;
+  }
+
+  .nav-tabs {
+    border-bottom: none;
+  }
+}
+
+textarea {
+  resize: none;
+}
+
+.card {
+  background-color: rgba($black, .3);
+
+  &-header, &-body, &-footer {
+    padding: .5rem;
+  }
+
+  &-footer {
+    color: rgba($white, .5);
+  }
+}

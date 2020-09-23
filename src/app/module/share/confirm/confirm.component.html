@@ -1,0 +1,9 @@
+<div class="modal-header bg-light p-2"></div>
+<div class="modal-body p-3 text-center" [innerHtml]="option.message|safeContent:'html'"></div>
+<div class="modal-footer p-2 justify-content-center">
+  <div class="btn-group">
+    <button type="button" *ngFor="let button of option.actions; trackBy: sortButtons"
+            class="btn btn-sm" [ngClass]="button.class" (click)="onAction(button.callback)"
+            [innerHTML]="button.text|safeContent:'html'"></button>
+  </div>
+</div>

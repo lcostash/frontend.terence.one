@@ -1,0 +1,101 @@
+<div class="row">
+  <div class="col justify-content-center">
+    <div class="d-flex align-items-center">
+      <div class="h4 mb-0">
+        <i class="fa fa-bullhorn fa-fw" aria-hidden="true"></i>
+        <span>Messages</span>
+      </div>
+      <span class="flex-grow-1"></span>
+      <div class="input-group input-group-sm d-none d-sm-inline-flex col-sm-4 col-md-4 col-lg-3 px-0">
+        <input type="text" class="form-control" maxlength="35" minlength="3"
+               id="search" aria-label="search" placeholder="Search message"
+               [(ngModel)]="search" (keyup.enter)="getMessages()"
+               [ngClass]="{'disabled':action.isBusy}">
+        <div class="input-group-append">
+          <button class="btn btn-secondary" type="button" (click)="getMessages()"
+                  title="Search" [ngClass]="{'disabled':action.isBusy}">
+            <i class="fa fa-search fa-fw" aria-hidden="true"></i>
+            <span class="d-none d-md-inline-block">Search</span>
+          </button>
+        </div>
+      </div>
+      <div class="btn-group btn-group-sm d-block">
+        <button type="button" class="btn btn-secondary" (click)="getMessages()"
+                title="Refresh"
+                [ngClass]="{'disabled':action.isBusy}">
+          <i class="fa fa-refresh fa-fw" [ngClass]="{'fa-spin':action.isBusy}" aria-hidden="true"></i>
+          <span class="d-none d-sm-inline-block">Refresh</span>
+        </button>
+        <button type="button" class="btn btn-primary" (click)="addMessage()"
+                title="Add" [ngClass]="{'disabled':action.isBusy}">
+          <i class="fa fa-plus fa-fw" aria-hidden="true"></i>
+          <span class="d-none d-sm-inline-block">Add</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row d-block d-sm-none py-2">
+  <div class="col-12">
+    <div class="input-group input-group-sm">
+      <input type="text" class="form-control" maxlength="35" minlength="3"
+             id="search1" aria-label="search1" placeholder="Search message"
+             [(ngModel)]="search" (keyup.enter)="getMessages()"
+             [ngClass]="{'disabled':action.isBusy}">
+      <div class="input-group-append">
+        <button class="btn btn-secondary" type="button" (click)="getMessages()"
+                title="Search" [ngClass]="{'disabled':action.isBusy}">
+          <i class="fa fa-search fa-fw" aria-hidden="true"></i>
+          <span class="d-none d-md-inline-block">Search</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="my-3">
+  <div class="card-columns">
+    <app-loading [display]="action.isRefresh||action.isInit"></app-loading>
+
+    <ng-template ngFor let-row [ngForOf]="rows">
+
+      <div class="card text-small">
+        <div class="card-header">
+          <div class="d-flex justify-content-between">
+            <div><strong>Sent:</strong>&nbsp;{{row.createdAt|localizedDate:dateTime}}</div>
+            <div class="btn-group btn-group-sm d-block">
+              <button type="button" class="btn btn-secondary" (click)="editMessage(row.id)"
+                      [ngClass]="{'disabled':action.isBusy}" title="Edit">
+                <i class="fa fa-pencil fa-fw" aria-hidden="true"></i>
+              </button>
+              <button type="button" class="btn btn-danger" (click)="deleteMessage(row.id)"
+                      [ngClass]="{'disabled':action.isBusy}" title="Delete">
+                <i class="fa fa-trash fa-fw" aria-hidden="true"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <p class="mb-0"><strong>Name:</strong>&nbsp;{{row.name}}</p>
+          <p class="mb-0"><strong>Email:</strong>&nbsp;{{row.email}}</p>
+          <p class="mb-0"><strong>Subscribed:</strong>&nbsp;
+            <i class="fa fa-rss fa-fw" aria-hidden="true"
+               [ngClass]="{'text-success':row.subscribed, 'text-muted':!row.subscribed}"></i>
+          </p>
+          <p class="mb-0"><strong>Message:</strong>&nbsp;{{row.message}}</p>
+        </div>
+      </div>
+
+    </ng-template>
+
+  </div>
+
+  <div class="row">
+    <div class="col-12 text-center">
+      <div *ngIf="rows.length===0&&!action.isInit">
+        <span>No data to display</span>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,33 @@
+<header class="container">
+  <div class="row">
+    <div class="col d-flex justify-content-between py-3">
+      <a routerLink="/" tabindex="0" aria-disabled="true" class="align-self-center">
+        <img src="../../../../assets/logo-white.svg" alt="" height="94" width="74"/>
+      </a>
+      <div class="d-flex flex-column justify-content-center align-items-end">
+        <div class="row">
+          <div class="col">
+            <div class="btn-group" role="group" aria-label="Basic example">
+              <button type="button" class="btn btn-sm btn-secondary"
+                      [routerLink]="auth.path+'/dashboard'" routerLinkActive="disabled"
+                      aria-disabled="true" *ngIf="auth.isLogged">
+                <i class="fa fa-tachometer fa-fw" aria-hidden="true"></i>
+                <span class="d-none d-sm-inline-block">Dashboard</span>
+              </button>
+              <button type="button" class="btn btn-sm btn-secondary"
+                      (click)="signIn()" aria-disabled="true" *ngIf="!auth.isLogged">
+                <i class="fa fa-sign-in fa-fw" aria-hidden="true"></i>
+                <span>Sign In</span>
+              </button>
+              <button type="button" class="btn btn-sm btn-secondary"
+                      (click)="signOut()" aria-disabled="true" *ngIf="auth.isLogged">
+                <i class="fa fa-sign-out fa-fw" aria-hidden="true"></i>
+                <span>Sign Out</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
