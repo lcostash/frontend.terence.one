@@ -4,6 +4,7 @@ import {CommonModule} from '@angular/common';
 import {RouterModule} from '@angular/router';
 
 import {ModalModule, BsModalService} from 'ngx-bootstrap/modal';
+import {RecaptchaModule, RecaptchaFormsModule} from 'ng-recaptcha';
 
 import {ShareModule} from './share.module';
 import {GuestAuthComponent} from './guest/guest-auth';
@@ -17,7 +18,9 @@ import {GuestWelcomeComponent} from './guest/guest-welcome';
     FormsModule,
     ReactiveFormsModule,
     ModalModule.forRoot(),
-    ShareModule
+    ShareModule,
+    RecaptchaModule,
+    RecaptchaFormsModule
   ],
   declarations: [
     GuestAuthComponent,

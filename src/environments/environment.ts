@@ -13,6 +13,9 @@ export const environment = {
       dateTime: 'd MMM y HH:mm'
     },
     store: 'terence.one',
+    reCaptcha: {
+      siteKey: '6LfS788ZAAAAADw9r_wXdSX5DsnDaVohNOaGz2LV'
+    },
     version: '0.0.1'
   }
 };

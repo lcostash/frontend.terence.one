@@ -40,20 +40,26 @@
 
       <div class="form-group">
         <label for="message" class="py-0 px-1 my-0">Message&nbsp;<span class="text-danger">*</span></label>
-        <textarea class="form-control" cols="30" rows="6" formControlName="message" id="message"
+        <textarea class="form-control" cols="30" rows="5" formControlName="message" id="message"
                   placeholder="" [ngClass]="{'ng-invalid':form.controls['message'].errors?.beError}"></textarea>
         <app-check [control]="form.controls['message']"></app-check>
       </div>
 
-      <div class="form-group1">
+      <div class="form-group">
         <div class="form-check" [ngClass]="{'ng-invalid':form.controls['subscribed'].errors?.beError}">
-          <input class="form-check-input" type="checkbox" id="subscribed">
+          <input class="form-check-input" type="checkbox" formControlName="subscribed" id="subscribed">
           <label class="form-check-label" for="subscribed">Subscribe to Tasty Treats' newsletter</label>
         </div>
         <app-check [control]="form.controls['subscribed']"></app-check>
       </div>
 
-      <div class="row mt-0 mt-sm-3 align-items-center">
+      <div class="row">
+        <div class="col-12 d-flex justify-content-center">
+          <re-captcha formControlName="captcha" siteKey="{{siteKey}}"></re-captcha>
+        </div>
+      </div>
+
+      <div class="row mt-2 mt-sm-3 align-items-center">
         <div class="col-12 col-sm-5 text-left">
           <small>
             <span class="text-danger">*</span>
@@ -62,10 +68,10 @@
         </div>
         <div class="col-12 mt-3 mt-sm-0 col-sm-7 d-flex justify-content-center justify-content-sm-end">
           <div class="btn-group btn-group-sm">
+            <button type="button" class="btn btn-secondary" (click)="bsModalRef.hide()">Cancel</button>
             <button type="submit" class="btn btn-primary" [disabled]="!form.valid">
               <i class="fa fa-spinner fa-pulse fa-fw" [hidden]="!action.isBusy"></i>Save
             </button>
-            <button type="button" class="btn btn-secondary" (click)="bsModalRef.hide()">Cancel</button>
           </div>
         </div>
       </div>

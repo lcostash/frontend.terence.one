@@ -3,7 +3,8 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {BsModalRef} from 'ngx-bootstrap/modal';
 import {ActionInterface, AjaxResponseInterface, FieldMessageInterface, MessageInterface} from '../../../interface';
 import {AuthService, CheckService, ShareService} from '../../../service';
-import {AjaxActionEnum} from "../../../enum";
+import {AjaxActionEnum} from '../../../enum';
+import {environment} from '../../../../environments/environment';
 
 @Component({
   selector: 'app-guest-message',
@@ -11,6 +12,7 @@ import {AjaxActionEnum} from "../../../enum";
   styleUrls: ['./guest-message.component.scss']
 })
 export class GuestMessageComponent implements OnInit, OnDestroy {
+  public siteKey = environment.app.reCaptcha.siteKey;
   public static isBusy: EventEmitter<boolean> = new EventEmitter();
   public action: ActionInterface = {isInit: false, isBusy: false};
   public form: FormGroup;
@@ -42,12 +44,14 @@ export class GuestMessageComponent implements OnInit, OnDestroy {
         this.form.controls.email.setValue(this.row.email);
         this.form.controls.message.setValue(this.row.message);
         this.form.controls.subscribed.setValue(this.row.subscribed);
+        this.form.controls.captcha.setValue(this.row.captcha);
         if (this.operation === AjaxActionEnum.Edit) {
           this.form.controls.id.markAsTouched();
           this.form.controls.name.markAsTouched();
           this.form.controls.email.markAsTouched();
           this.form.controls.message.markAsTouched();
           this.form.controls.subscribed.markAsTouched();
+          this.form.controls.captcha.markAsTouched();
         }
       }
     }).finally(() => {
@@ -70,7 +74,8 @@ export class GuestMessageComponent implements OnInit, OnDestroy {
         name: null,
         email: null,
         message: null,
-        subscribed: false
+        subscribed: false,
+        captcha: null
       };
 
       if (this.operation === AjaxActionEnum.Add) {
@@ -110,7 +115,10 @@ export class GuestMessageComponent implements OnInit, OnDestroy {
         Validators.maxLength(255),
         CheckService.stringValidator
       ]),
-      subscribed: new FormControl(null, [])
+      subscribed: new FormControl(null, []),
+      captcha: new FormControl(null, [
+        Validators.required
+      ])
     });
   }
 
@@ -146,5 +154,14 @@ export class GuestMessageComponent implements OnInit, OnDestroy {
         }
       );
     }
+  }
+
+  /**
+   * @since 0.0.1
+   * @param captcha string
+   * @return void
+   */
+  public onCaptchaResolved(captcha: string): void {
+    console.log(captcha);
   }
 }

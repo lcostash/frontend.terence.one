@@ -4,5 +4,6 @@ export declare interface MessageInterface {
   email: string;
   message: string;
   subscribed: boolean;
+  captcha: string;
   createAt?: Date;
 }
