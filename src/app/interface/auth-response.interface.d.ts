@@ -7,9 +7,7 @@ export declare interface AuthResponseInterface extends AjaxResponseInterface {
     uuid: string;
     firstName: string;
     lastName: string;
-    thumbnail: string;
     role: UserRoleEnum;
-    path: UserPathEnum;
   };
-  settings: string;
+  settings?: string;
 }

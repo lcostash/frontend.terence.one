@@ -115,7 +115,7 @@ export class AuthService {
    */
   public signIn(data: SignInInterface): Promise<AjaxResponseInterface> {
     return new Promise((resolve, reject) => {
-      this.shareService.doAction('auth/sign-in', AjaxActionEnum.Add, data).subscribe(
+      this.shareService.doAction('api/auth/sign-in', AjaxActionEnum.Add, data).subscribe(
         async (response: AuthResponseInterface) => {
           await this.setAuthData(response);
           resolve(response);

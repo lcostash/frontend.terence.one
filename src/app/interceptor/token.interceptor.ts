@@ -21,7 +21,7 @@ export class TokenInterceptor implements HttpInterceptor {
     headers['Content-Type'] = 'application/json';
     headers['Content-Language'] = 'en';
     if (ajaxStore && ajaxStore.token.length !== 0) {
-      headers['X-AUTH-TOKEN'] = `Bearer ${ajaxStore.token}`;
+      headers['Authorization'] = `Bearer ${ajaxStore.token}`;
     }
     if (!environment.app.ajax.cache) {
       headers['Cache-Control'] = 'no-cache';
