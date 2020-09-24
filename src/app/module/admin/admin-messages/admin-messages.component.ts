@@ -17,6 +17,7 @@ export class AdminMessagesComponent implements OnInit {
   public dateTime: string = environment.app.format.dateTime;
   public search = '';
   public rows: Array<MessageInterface> = [];
+  public lookingForRows: Array<MessageInterface> = [];
   public action: ActionInterface = {isBusy: false, isRefresh: false};
 
   /**
@@ -41,13 +42,16 @@ export class AdminMessagesComponent implements OnInit {
    * @return void
    */
   public getMessages(): void {
+    this.search = '';
     this.action.isBusy = true;
     this.shareService.doAction('api/messages', AjaxActionEnum.View).subscribe(
       (response: AjaxResponseInterface) => {
         this.rows = (response.rows ? response.rows : []) as Array<MessageInterface>;
+        this.lookingForRows = (response.rows ? response.rows : []) as Array<MessageInterface>;
         this.action.isBusy = false;
       }, () => {
         this.rows = [];
+        this.lookingForRows = [];
         this.action.isBusy = false;
       }
     );
@@ -93,6 +97,22 @@ export class AdminMessagesComponent implements OnInit {
         this.toastrService.info('Sorry, this functionality will be implemented in next version.', 'Coming soon');
       }
       subscription.unsubscribe();
+    });
+  }
+
+  /**
+   * @since 0.0.1
+   * @param event Event
+   * @return void
+   */
+  public lookingFor(event: Event): void {
+    event.preventDefault();
+    const lowerValue = this.search.toLowerCase();
+    this.rows = this.lookingForRows.filter((item: MessageInterface) => {
+      return item.name.toLowerCase().indexOf(lowerValue) !== -1 ||
+        item.email.toLowerCase().indexOf(lowerValue) !== -1 ||
+        item.message.toLowerCase().indexOf(lowerValue) !== -1 ||
+        !lowerValue;
     });
   }
 }

@@ -9,10 +9,10 @@
       <div class="input-group input-group-sm d-none d-sm-inline-flex col-sm-4 col-md-4 col-lg-3 px-0">
         <input type="text" class="form-control" maxlength="35" minlength="3"
                id="search" aria-label="search" placeholder="Search message"
-               [(ngModel)]="search" (keyup.enter)="getMessages()"
+               [(ngModel)]="search" (keyup)="lookingFor($event)"
                [ngClass]="{'disabled':action.isBusy}">
         <div class="input-group-append">
-          <button class="btn btn-secondary" type="button" (click)="getMessages()"
+          <button class="btn btn-secondary" type="button" (click)="lookingFor($event)"
                   title="Search" [ngClass]="{'disabled':action.isBusy}">
             <i class="fa fa-search fa-fw" aria-hidden="true"></i>
             <span class="d-none d-md-inline-block">Search</span>
@@ -41,10 +41,10 @@
     <div class="input-group input-group-sm">
       <input type="text" class="form-control" maxlength="35" minlength="3"
              id="search1" aria-label="search1" placeholder="Search message"
-             [(ngModel)]="search" (keyup.enter)="getMessages()"
+             [(ngModel)]="search" (keyup)="lookingFor($event)"
              [ngClass]="{'disabled':action.isBusy}">
       <div class="input-group-append">
-        <button class="btn btn-secondary" type="button" (click)="getMessages()"
+        <button class="btn btn-secondary" type="button" (click)="lookingFor($event)"
                 title="Search" [ngClass]="{'disabled':action.isBusy}">
           <i class="fa fa-search fa-fw" aria-hidden="true"></i>
           <span class="d-none d-md-inline-block">Search</span>
